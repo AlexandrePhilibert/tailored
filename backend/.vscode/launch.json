@@ -1,0 +1,24 @@
+{
+  "configurations": [
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:backend}",
+      "name": "Debug tailored",
+      "target": "tailored",
+      "configuration": "debug",
+      "preLaunchTask": "swift: Build Debug tailored"
+    },
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:backend}",
+      "name": "Release tailored",
+      "target": "tailored",
+      "configuration": "release",
+      "preLaunchTask": "swift: Build Release tailored"
+    }
+  ]
+}
