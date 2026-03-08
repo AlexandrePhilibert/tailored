@@ -10,18 +10,20 @@ import SwiftData
 
 struct ContentView: View {
     var body: some View {
-        TabView {
-            Tab("Explore", image: "GlobeHemisphereWest") {
-                ExploreView()
-            }
-            Tab("Search", image: "MagnifyingGlass") {
-                SearchView()
-            }
-            Tab("Tickets", image: "Ticket") {
-                TicketsView()
-            }
-            Tab("Profile", image: "UserCircle") {
-                ProfileView()
+        NavigationStack {
+            TabView {
+                Tab("Explore", image: "GlobeHemisphereWest") {
+                    ExploreView()
+                }
+                Tab("Search", image: "MagnifyingGlass") {
+                    SearchView()
+                }
+                Tab("Tickets", image: "Ticket") {
+                    TicketsView()
+                }
+                Tab("Profile", image: "UserCircle") {
+                    ProfileView()
+                }
             }
         }
     }
