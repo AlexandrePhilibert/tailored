@@ -9,6 +9,8 @@ import SwiftUI
 
 struct EventView: View {
     var event: Event
+    
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         ScrollView {
@@ -18,12 +20,61 @@ struct EventView: View {
                     .aspectRatio(contentMode: .fill)
                     .frame(minHeight: 300)
             } placeholder: {}
+            
+            HStack {
+                Text("Concert: Crans, Switzerland")
+                    .bold()
+                Spacer()
+            }
+            .padding(.horizontal)
+            
+            Spacer(minLength: 8)
+
+            HStack(alignment: .center, spacing: 24) {
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("17").bold()
+                    Text("June")
+                }
+                
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Tuesday").bold()
+                    Text("21:00 - 23:00")
+                }
+                
+                Spacer()
+                
+                Button {
+                    
+                } label: {
+                    Image("CalendarDots")
+                        // TODO: We can probably improve this
+                        .frame(width: 24, height: 24)
+                        .padding(.horizontal, 4)
+                        .padding(.vertical, 8)
+                        .foregroundColor(.white)
+                }
+                .tint(.gray)
+                .buttonStyle(.bordered)
+                .buttonBorderShape(.capsule)
+            }
+            .padding(.horizontal)
         }
         .ignoresSafeArea(edges: .top)
+        .scrollEdgeEffectHidden()
+        .scrollBounceBehavior(.basedOnSize)
+        .navigationBarBackButtonHidden(true)
         .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: { presentationMode.wrappedValue.dismiss() }) {
+                    Image("CaretLeft")
+                        .foregroundColor(.white)
+                }
+            }
+    
+            
             ToolbarItem(placement: .principal) {
                 Text(event.name)
-                    .bold()
+                    .font(Font.title2.bold())
                     .foregroundColor(.white)
             }
             
@@ -32,6 +83,7 @@ struct EventView: View {
                     
                 } label: {
                     Image("ShareNetwork")
+                        .foregroundColor(.white)
                 }
             }
         }
@@ -41,13 +93,14 @@ struct EventView: View {
                     
                 } label: {
                     Image("Heart")
+                        .foregroundColor(.white)
                         .frame(width: 24, height: 24)
                         .padding(.horizontal, 4)
                         .padding(.vertical, 8)
                 }
                 .buttonStyle(.bordered)
                 .buttonBorderShape(.capsule)
-                .tint(Color(.systemGray))
+                .tint(Color.gray)
                 
                 Spacer()
                 
