@@ -11,8 +11,8 @@ final class Seat: Model, @unchecked Sendable {
     @Parent(key: "event_id")
     var event: Event
 
-    @Field(key: "seat_number")
-    var seatNumber: Int
+    @Field(key: "number")
+    var number: Int
 
     @Field(key: "status")
     var status: SeatStatus
@@ -22,10 +22,10 @@ final class Seat: Model, @unchecked Sendable {
 
     init() {}
 
-    init(id: UUID? = nil, event: Event, seatNumber: Int, status: SeatStatus) {
+    init(id: UUID? = nil, event: Event, number: Int, status: SeatStatus) {
         self.id = id
         self.event = event
-        self.seatNumber = seatNumber
+        self.number = number
         self.status = status
     }
 }
