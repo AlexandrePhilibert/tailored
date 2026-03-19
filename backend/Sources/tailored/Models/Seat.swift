@@ -1,13 +1,7 @@
 import Fluent
 import Foundation
 
-enum SeatStatus: String, Codable {
-    case available
-    case reserved
-    case sold
-}
-
-final class Seat: Model {
+final class Seat: Model, @unchecked Sendable {
     static let schema = "seats"
 
     @ID(key: .id)

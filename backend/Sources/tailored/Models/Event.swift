@@ -1,7 +1,7 @@
 import Fluent
 import Foundation
 
-final class Event: Model {
+final class Event: Model, @unchecked Sendable {
     static let schema = "events"
 
     @ID(key: .id)

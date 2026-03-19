@@ -2,7 +2,7 @@ import Fluent
 import Foundation
 
 // Join table between Reservation and Seat
-final class ReservationSeat: Model {
+final class ReservationSeat: Model, @unchecked Sendable {
     static let schema = "reservation_seats"
 
     @ID(key: .id)

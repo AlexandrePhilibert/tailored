@@ -1,7 +1,7 @@
 import Fluent
 import Foundation
 
-final class Reservation: Model {
+final class Reservation: Model, @unchecked Sendable {
     static let schema = "reservations"
 
     @ID(key: .id)
@@ -17,14 +17,16 @@ final class Reservation: Model {
     var expiresAt: Date
 
     @Field(key: "status")
-    var status: String
+    var status: ReservationStatus
 
     @Children(for: \.$reservation)
     var reservationSeats: [ReservationSeat]
 
-    init() {}
+    init() {
+        self.$event.id = UUID()
+    }
 
-    init(id: UUID? = nil, event: Event, userID: UUID, expiresAt: Date, status: String) {
+    init(id: UUID? = nil, event: Event, userID: UUID, expiresAt: Date, status: ReservationStatus) {
         self.id = id
         self.event = event
         self.userID = userID
