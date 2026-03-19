@@ -8,17 +8,17 @@ final class ReservationSeat: Model {
     @ID(key: .id)
     var id: UUID?
 
-    @Field(key: "reservation id")
-    var reservationID: UUID
+    @Parent(key: "reservation_id")
+    var reservation: Reservation
 
-    @Field(key: "seat id")
-    var seatID: UUID
+    @Parent(key: "seat_id")
+    var seat: Seat
 
     init() {}
 
-    init(id: UUID? = nil, reservationID: UUID, seatID: UUID) {
+    init(id: UUID? = nil, reservation: Reservation, seat: Seat) {
         self.id = id
-        self.reservationID = reservationID
-        self.seatID = seatID
+        self.reservation = reservation
+        self.seat = seat
     }
 }

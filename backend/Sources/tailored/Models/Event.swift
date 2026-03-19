@@ -13,19 +13,18 @@ final class Event: Model {
     @Field(key: "date")
     var date: Date
 
-    @Field(key: "number of seats")
-    var numberOfSeats: Int
-
     @Field(key: "venue")
     var venue: String?
 
+    @Children(for: \.$event)
+    var seats: [Seat]
+
     init() {}
 
-    init(id: UUID? = nil, name: String, date: Date, numberOfSeats: Int, venue: String? = nil) {
+    init(id: UUID? = nil, name: String, date: Date, venue: String? = nil) {
         self.id = id
         self.name = name
         self.date = date
-        self.numberOfSeats = numberOfSeats
         self.venue = venue
     }
 }

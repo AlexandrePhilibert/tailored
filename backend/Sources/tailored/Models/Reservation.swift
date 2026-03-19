@@ -7,19 +7,26 @@ final class Reservation: Model {
     @ID(key: .id)
     var id: UUID?
 
-    @Field(key: "user id")
+    @Parent(key: "event_id")
+    var event: Event
+
+    @Field(key: "user_id")
     var userID: UUID
 
-    @Field(key: "expires at")
+    @Field(key: "expires_at")
     var expiresAt: Date
 
     @Field(key: "status")
     var status: String
 
+    @Children(for: \.$reservation)
+    var reservationSeats: [ReservationSeat]
+
     init() {}
 
-    init(id: UUID? = nil, userID: UUID, expiresAt: Date, status: String) {
+    init(id: UUID? = nil, event: Event, userID: UUID, expiresAt: Date, status: String) {
         self.id = id
+        self.event = event
         self.userID = userID
         self.expiresAt = expiresAt
         self.status = status

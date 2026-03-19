@@ -1,6 +1,12 @@
 import Fluent
 import Foundation
 
+enum SeatStatus: String, Codable {
+    case available
+    case reserved
+    case sold
+}
+
 final class Seat: Model {
     static let schema = "seats"
 
@@ -8,20 +14,23 @@ final class Seat: Model {
     var id: UUID?
 
     // Foreign key to the Event model
-    @Field(key: "event id")
-    var eventID: UUID
+    @Parent(key: "event_id")
+    var event: Event
 
-    @Field(key: "seat number")
+    @Field(key: "seat_number")
     var seatNumber: Int
 
     @Field(key: "status")
-    var status: String
+    var status: SeatStatus
+
+    @Children(for: \.$seat)
+    var reservationSeats: [ReservationSeat]
 
     init() {}
 
-    init(id: UUID? = nil, eventID: UUID, seatNumber: Int, status: String) {
+    init(id: UUID? = nil, event: Event, seatNumber: Int, status: SeatStatus) {
         self.id = id
-        self.eventID = eventID
+        self.event = event
         self.seatNumber = seatNumber
         self.status = status
     }
